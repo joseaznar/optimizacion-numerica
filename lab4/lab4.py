@@ -1,6 +1,7 @@
 import numpy as np
 import random
 import cvxopt
+import scipy.optimize as so
 
 
 def bp (X, y):
@@ -11,11 +12,9 @@ def bp (X, y):
     unos = np.ones(X.shape[1])
     zeros = np.zeros([X.shape[0], X.shape[1]])
     zeros_2 = np.zeros(len(X))
-    betahat = cvxopt.solvers.conelp(c=cvxopt.matrix(unos), G=cvxopt.matrix(zeros), h=cvxopt.matrix(zeros_2), A=cvxopt.matrix(X), b=cvxopt.matrix(y))
+    betahat = so.linprog(c=unos, A_eq=X, b_eq=y)
 
-    print(betahat['status'])
-
-    return betahat['x']
+    return betahat
 
 
 def datos(m, p, k):
