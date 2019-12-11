@@ -1,6 +1,6 @@
 from random import random
 import numpy as np
-from utils import supportSet, errorVector
+from utils import supportSet, errorVector, solveProblem
 from scipy.optimize import linprog
 
 if __name__ == "__main__":
@@ -12,6 +12,7 @@ if __name__ == "__main__":
 
     # 2) Select S as a percentage of m
     S = round(random() * m)
+    S = 1
 
     # 3) Select a support set with a size of S uniformly at random and use it to sample a
     # vector e on T
@@ -24,7 +25,12 @@ if __name__ == "__main__":
 
     y = np.matmul(A, x) + e
 
-    ones = [[1] * m]
-    A_ub = np.concatenate((A, A), axis=1)
-    print(A_ub.shape)
-    t_star = linprog(ones, )
+    x_star = solveProblem(y[0], A, m, n);
+    print(A.shape)
+    print(x_star.shape)
+    print(e.shape)
+    y_star = np.matmul(A, x_star) + e
+    print(x)
+    print(x_star)
+    print(y)
+    print(y_star)
