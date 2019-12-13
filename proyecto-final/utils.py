@@ -1,12 +1,13 @@
 import numpy as np
 import cvxpy as cp
+import matplotlib.pyplot as plt
 
 
 def supportSet(m, S):
     """
     Choose the support set given a size m uniformly at random with probability 1/S.
     """
-    probs = [1-1/(m-S), 1/(m-S)]
+    probs = [1 - S/m, S/m]
     return np.random.choice([0, 1], size=(m, 1), p=probs)
 
 
@@ -24,10 +25,21 @@ def solveProblem(y, A, m, n):
     t = cp.Variable(m)
     g = cp.Variable(n)
     prob = cp.Problem(cp.Minimize(cp.sum(t)), [-t <= y-A@g, y-A@g <= t])
-    optimal_value = prob.solve()
 
-    print(t.value)
-    print(g.value)
-    print(optimal_value)
+    try:
+        optimal_value = prob.solve()
+        return g.value
+    except Exception as e:
+        print('Error del solver.')
+        g = np.zeros((m,1))
+        return g
 
-    return g.value
+def scatterPlot(x, y):
+    """
+    Generates the scatterplot
+    """
+    plt.scatter(x, y)
+    plt.title('Predicción')
+    plt.xlabel('x')
+    plt.ylabel('y')
+    plt.show()
