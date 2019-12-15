@@ -31,8 +31,9 @@ def solveProblem(y, A, m, n):
         return g.value
     except Exception as e:
         print('Error del solver.')
-        g = np.zeros((m,1))
+        g = np.zeros((n, 1))
         return g
+
 
 def scatterPlot(x, y):
     """

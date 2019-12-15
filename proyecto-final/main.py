@@ -7,15 +7,16 @@ if __name__ == "__main__":
     acc = {}
     xAxis = []
     yAxis = []
-    for i in range(1, 40):
+    max_value = 20
+    for i in range(1, max_value):
         # 1) Select n and m and generate A as a n by m matrix
         n = 512
         m = 2 * n
 
-        A = np.random.normal(0, 1, (m, n))
+        A = np.random.normal(0, 1/10, (m, n))
 
         # 2) Select S as a percentage of m
-        S = (0.025 * i) * m
+        S = (1 / max_value) * i * m
 
         # 3) Select a support set with a size of S uniformly at random and use it to sample a
         # vector e on T
