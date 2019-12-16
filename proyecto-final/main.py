@@ -13,10 +13,10 @@ if __name__ == "__main__":
         n = 512
         m = 2 * n
 
-        A = np.random.normal(0, 1/10, (m, n))
+        A = np.random.normal(0, 1, (m, n))
 
         # 2) Select S as a percentage of m
-        S = (1 / max_value) * i * m
+        S = (1 / (2 * max_value)) * i * m
 
         # 3) Select a support set with a size of S uniformly at random and use it to sample a
         # vector e on T
@@ -51,4 +51,4 @@ if __name__ == "__main__":
         print('norm(y-y*)', np.linalg.norm(y[:,0]-y_star)) '''
 
     print(acc)
-    scatterPlot(xAxis, yAxis)
+    scatterPlot(xAxis, yAxis, m, n)

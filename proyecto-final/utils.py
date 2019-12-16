@@ -35,12 +35,12 @@ def solveProblem(y, A, m, n):
         return g
 
 
-def scatterPlot(x, y):
+def scatterPlot(x, y, m, n):
     """
     Generates the scatterplot
     """
     plt.scatter(x, y)
-    plt.title('Predicción')
-    plt.xlabel('x')
-    plt.ylabel('y')
+    plt.title('Frecuencia empírica de reconstrucción exacta, n=' + str(n) + ', m=' + str(m))
+    plt.xlabel('frecuencia')
+    plt.ylabel('% de entradas corrompidas')
     plt.show()
